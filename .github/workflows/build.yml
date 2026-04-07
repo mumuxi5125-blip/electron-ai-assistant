@@ -1,0 +1,56 @@
+name: Build Electron App
+
+on:
+  workflow_dispatch:  # 手动触发
+  push:
+    tags:
+      - 'v*'  # 标签推送时自动构建
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: |
+        npm ci
+        # 安装 electron-builder 依赖
+        npm install --save-dev electron-builder
+    
+    - name: Debug info
+      run: |
+        node --version
+        npm --version
+        dir
+    
+    - name: Build Electron app
+      env:
+        # 解决 GH_TOKEN not set 错误
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN || 'dummy_token' }}
+      run: |
+        # 修改 package.json 中的 publish 配置以避免发布错误
+        # 使用 electron-builder 的 --publish never 参数
+        npx electron-builder --win --publish never
+    
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: Electron-AI-Assistant-Setup
+        path: dist/*.exe
+        retention-days: 7
+    
+    - name: Upload all build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: All-Build-Artifacts
+        path: dist/
+        retention-days: 7
