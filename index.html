@@ -19,7 +19,7 @@
             
             <!-- API 配置 -->
             <div class="section">
-                <h3><i class="fas fa-plug"></i> API Configuration</h3>
+                <h3><i class="fas fa-plug"></i> API 配置</h3>
                 <div class="api-config">
                     <div v-for="(config, name) in apiConfigs" :key="name" class="api-item">
                         <label class="toggle">
@@ -27,17 +27,17 @@
                             <span class="toggle-slider"></span>
                         </label>
                         <span class="api-name">{{ name }}</span>
-                        <input type="password" v-model="config.apiKey" placeholder="API Key" @change="saveApiConfigs" class="api-key">
-                        <input type="text" v-model="config.baseURL" placeholder="Base URL" @change="saveApiConfigs" class="api-url">
+                        <input type="password" v-model="config.apiKey" placeholder="API密钥" @change="saveApiConfigs" class="api-key">
+                        <input type="text" v-model="config.baseURL" placeholder="基础URL" @change="saveApiConfigs" class="api-url">
                     </div>
                 </div>
             </div>
             
             <!-- 会话列表 -->
             <div class="section">
-                <h3><i class="fas fa-comments"></i> Sessions</h3>
+                <h3><i class="fas fa-comments"></i> 会话</h3>
                 <button @click="createSession" class="btn btn-primary btn-sm">
-                    <i class="fas fa-plus"></i> New Session
+                    <i class="fas fa-plus"></i> 新建会话
                 </button>
                 <div class="session-list">
                     <div v-for="session in sessions" 
@@ -60,7 +60,7 @@
             
             <!-- 文件浏览器 -->
             <div class="section">
-                <h3><i class="fas fa-folder"></i> File Browser</h3>
+                <h3><i class="fas fa-folder"></i> 文件浏览器</h3>
                 <div class="file-browser">
                     <div class="path-nav">
                         <button @click="goUpDirectory" :disabled="!canGoUp">
@@ -100,21 +100,21 @@
             <div class="toolbar">
                 <div class="toolbar-left">
                     <h2 v-if="currentSession">{{ currentSession.name }}</h2>
-                    <div v-else>No active session</div>
+                    <div v-else>没有活动会话</div>
                 </div>
                 <div class="toolbar-right">
                     <div class="mode-toggle">
                         <button :class="['btn', mode === 'chat' ? 'btn-primary' : 'btn-secondary']" 
                                 @click="mode = 'chat'">
-                            <i class="fas fa-comment"></i> Chat
+                            <i class="fas fa-comment"></i> 聊天
                         </button>
                         <button :class="['btn', mode === 'agent' ? 'btn-primary' : 'btn-secondary']" 
                                 @click="mode = 'agent'">
-                            <i class="fas fa-cogs"></i> Agent
+                            <i class="fas fa-cogs"></i> 代理模式
                         </button>
                     </div>
                     <button @click="clearChat" class="btn btn-secondary">
-                        <i class="fas fa-trash"></i> Clear
+                        <i class="fas fa-trash"></i> 清空
                     </button>
                 </div>
             </div>
@@ -127,7 +127,7 @@
                          :class="['message', message.role]">
                         <div class="message-header">
                             <i :class="message.role === 'user' ? 'fas fa-user' : 'fas fa-robot'"></i>
-                            <span>{{ message.role === 'user' ? 'You' : 'Assistant' }}</span>
+                            <span>{{ message.role === 'user' ? '你' : '助手' }}</span>
                             <span class="message-time">{{ formatTime(message.timestamp) }}</span>
                         </div>
                         <div class="message-content">
@@ -139,7 +139,7 @@
                                 <i class="fas fa-copy"></i>
                             </button>
                             <button @click="executeAgentCommand(message.content)" class="btn-icon">
-                                <i class="fas fa-play"></i> Execute
+                                <i class="fas fa-play"></i> 执行
                             </button>
                         </div>
                     </div>
@@ -148,10 +148,10 @@
                 <!-- 输入区域 -->
                 <div class="input-container">
                     <div class="input-toolbar">
-                        <button @click="insertFileReference" title="Insert file reference">
+                        <button @click="insertFileReference" title="插入文件引用">
                             <i class="fas fa-paperclip"></i>
                         </button>
-                        <button @click="toggleSystemPrompt" title="System prompt">
+                        <button @click="toggleSystemPrompt" title="系统提示">
                             <i class="fas fa-cog"></i>
                         </button>
                         <select v-model="selectedProvider" class="provider-select">
@@ -162,11 +162,11 @@
                     </div>
                     <textarea v-model="userInput" 
                               @keydown.enter.exact.prevent="sendMessage"
-                              placeholder="Type your message... (Enter to send, Shift+Enter for new line)"
+                              placeholder="输入您的消息...（Enter 发送，Shift+Enter 换行）"
                               rows="3"></textarea>
                     <div class="input-actions">
                         <button @click="sendMessage" :disabled="!userInput.trim() || isLoading" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i> Send
+                            <i class="fas fa-paper-plane"></i> 发送
                             <span v-if="isLoading" class="spinner"></span>
                         </button>
                     </div>
