@@ -1,4 +1,6 @@
-# Electron AI Assistant
+# 项目名称
+
+[📖 中文说明](https://github.com/mumuxi5125-blip/electron-ai-assistant/blob/master/README_ZH.md)# Electron AI Assistant
 
 A desktop AI assistant application built with Electron, featuring multi-API support, session management, file system access, and agent mode for automated task execution.
 
