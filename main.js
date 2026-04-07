@@ -24,6 +24,18 @@ const store = new Store({
   }
 });
 
+// 确保 deepseek 默认启用（如果用户已输入 API 密钥）
+const apiConfigs = store.get('apiConfigs');
+if (apiConfigs && apiConfigs.deepseek) {
+  if (!apiConfigs.deepseek.enabled && apiConfigs.deepseek.apiKey) {
+    apiConfigs.deepseek.enabled = true;
+    store.set('apiConfigs', apiConfigs);
+  }
+} else {
+  // 初始化 deepseek 配置
+  store.set('apiConfigs.deepseek', { enabled: true, apiKey: '', baseURL: 'https://api.deepseek.com/v1' });
+}
+
 let mainWindow = null;
 
 function createWindow() {
@@ -234,12 +246,12 @@ ipcMain.handle('dialog:confirm', async (event, options) => {
   
   const result = await dialog.showMessageBox(mainWindow, {
     type: 'warning',
-    buttons: ['Cancel', 'Confirm'],
+    buttons: ['取消', '确认'],
     defaultId: 1,
     cancelId: 0,
-    title: options.title || 'Confirm Action',
-    message: options.message || 'Are you sure you want to perform this action?',
-    detail: options.detail || 'This action may modify or delete files.'
+    title: options.title || '确认操作',
+    message: options.message || '确定要执行此操作吗？',
+    detail: options.detail || '此操作可能会修改或删除文件。'
   });
   
   return { confirmed: result.response === 1 };
