@@ -1,5 +1,11 @@
 # Electron AI 助手
-
+<p align="center">
+  <a href="./README.md">English</a> | 
+  <a href="./README_ZH.md">简体中文</a><br>
+  <a href="./LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License">
+  </a>
+</p>
 一个使用 Electron 构建的桌面 AI 助手应用，支持多 API、会话管理、文件系统访问，以及用于自动执行任务的代理模式。
 
 ## 功能特性
