@@ -12,10 +12,10 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     
     - name: Setup Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: '18.x'
         cache: 'npm'
@@ -37,19 +37,18 @@ jobs:
         # 解决 GH_TOKEN not set 错误
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN || 'dummy_token' }}
       run: |
-        # 修改 package.json 中的 publish 配置以避免发布错误
         # 使用 electron-builder 的 --publish never 参数
         npx electron-builder --win --publish never
     
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: Electron-AI-Assistant-Setup
         path: dist/*.exe
         retention-days: 7
     
     - name: Upload all build artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: All-Build-Artifacts
         path: dist/
