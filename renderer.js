@@ -6,7 +6,7 @@ createApp({
     // 状态
     const apiConfigs = ref({
       openai: { enabled: true, apiKey: '', baseURL: 'https://api.openai.com/v1' },
-      deepseek: { enabled: false, apiKey: '', baseURL: 'https://api.deepseek.com/v1' },
+      deepseek: { enabled: true, apiKey: '', baseURL: 'https://api.deepseek.com/v1' },
       doubao: { enabled: false, apiKey: '', baseURL: 'https://ark.cn-beijing.volces.com/api/v3' }
     });
     
@@ -34,7 +34,7 @@ createApp({
     // 聊天状态
     const userInput = ref('');
     const isLoading = ref(false);
-    const selectedProvider = ref('openai');
+    const selectedProvider = ref('deepseek');
     const messagesContainer = ref(null);
     
     // Agent 模式状态
