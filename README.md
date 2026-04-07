@@ -1,8 +1,11 @@
 # 项目名称
-<div align="center">
-  [English](./README.md) | [简体中文](./README_ZH.md)
-  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-</div>
+<p align="center">
+  <a href="./README.md">English</a> | 
+  <a href="./README_ZH.md">简体中文</a><br>
+  <a href="./LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License">
+  </a>
+</p>
 # Electron AI Assistant
 
 A desktop AI assistant application built with Electron, featuring multi-API support, session management, file system access, and agent mode for automated task execution.
