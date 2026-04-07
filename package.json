@@ -1,5 +1,5 @@
 {
-  "name": "electron-ai-assistant",
+  "name": "MoonCode",
   "version": "1.0.0",
   "description": "AI Desktop Assistant with multi-API support and file system access",
   "main": "main.js",
